@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+    <h1 style="text-align:center; margin-top:20%;">
+      Let's play Rock Paper Scissors!<br />Refresh to play again!
+    </h1>
+    <script type="text/javascript">
+      // TODO: Create an array of the three game choices (Rock, Paper, or Scissors).
+      var gameChoices = ["Rock", "Paper", "Scissors"]
+      // TODO: Create variables to hold the number of wins, losses, and ties. They start at 0.
+      var winCounter = 0;
+      var lossCounter = 0;
+      var tiesCounter = 0;
+      // Ask user if they want to play agaim
+      function restart() {
+          var playAgain = window.confirm("Would you like to play again?");
+          if (playAgain) {
+            game();
+          } else {
+            endGame()
+          }
+        }
+
+        function game() {
+        // TODO: Randomly choose a choice from the gameChoices array. This is the computer's turn.
+        var computerTurn = gameChoices[Math.floor(Math.random()*gameChoices.length)].toLowerCase()
+        console.log(computerTurn)
+
+        // TODO: Collect the user's response and convert to lower case. This is the user's turn.
+        //create a variable to store user's input
+        var userTurn
+        //get user's input
+        function getUserInput() {
+          var userInput = window.prompt("Rock, Paper, or Scissors? Type in your answer! :>").toLowerCase();
+          switch (userInput) {
+          case "rock":
+            return userTurn = "rock";
+          case "paper":
+            return userTurn = "paper";
+          case "scissor":
+          case "scissors":
+            return userTurn = "scissors";
+          default:
+            window.alert("Please select a valid option!");
+            getUserInput()  
+         }     
+        }
+        getUserInput()
+        console.log(userTurn)
+      
+        // TODO: Create the game logic to run if the user chooses a valid game choice
+
+        function gameLogic() {
+          if(userTurn==computerTurn) {
+            window.alert("It's a tie!")
+            tiesCounter ++
+            restart()
+          } else if (userTurn === "rock" && computerTurn === "paper"){
+            window.alert("You lost this round.")
+            lossCounter ++
+            restart()
+          } else if (userTurn === "rock" && computerTurn === "scissors") {
+            window.alert("You won this round.")
+            winCounter ++
+            restart()
+          } else if (userTurn === "paper" && computerTurn === "rock") {
+            window.alert("You won this round.")
+            winCounter ++
+            restart()
+          } else if (userTurn === "paper" && computerTurn === "scissors") {
+            window.alert("You lost this round.")
+            lossCounter ++
+            restart()
+          } else if (userTurn === "scissors" && computerTurn === "rock") {
+            window.alert("You lost this round.")
+            lossCounter ++
+            restart()
+          } else if (userTurn === "scissors" && computerTurn === "paper") {
+            window.alert("You won this round.")
+            winCounter ++
+            restart()
+          } else {
+            window.alert("Please select a valid option!");
+            restart()
+          }
+        }
+        gameLogic()
+        }
+        game();
+
+      // TODO: When the game is over, alert the final total to the user. We can use the \n character to make a line break.
+      function endGame() {
+        window.alert("Here's your stats: \n Wins: " + winCounter + "\n Losses: " + lossCounter + "\n Ties: " + tiesCounter);
+      }
+    </script>
+  </body>
+</html>
